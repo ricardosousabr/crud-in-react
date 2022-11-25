@@ -18,7 +18,6 @@ export default function Form() {
           <input type="text" onChange={(e) => setValueInput(e.target.value)} />
           <button>click</button>
         </form>
-        <button onClick={insertValue}>click</button>
       </div>
       <div>
         <ul></ul>
