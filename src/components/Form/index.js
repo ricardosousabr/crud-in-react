@@ -1,26 +1,31 @@
 import { useState } from "react";
 
+import Button from "../Button/index";
+
+function List({ items }) {
+  const listItems = items.map((item) => <li key={item.toString()}>{item}</li>);
+
+  return <ul>{listItems}</ul>;
+}
+
 export default function Form() {
   const [valueInput, setValueInput] = useState("");
+  const items = [valueInput];
 
-  function insertValue() {
-    const list = document.querySelector("ul");
-    const item = document.createElement("li");
-
-    item.innerHTML = valueInput;
-    list.appendChild(item);
-  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
 
   return (
     <>
       <div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <input type="text" onChange={(e) => setValueInput(e.target.value)} />
-          <button>click</button>
+          <Button>click</Button>
         </form>
       </div>
       <div>
-        <ul></ul>
+        <List items={items} />
       </div>
     </>
   );
