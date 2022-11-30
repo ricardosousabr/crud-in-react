@@ -1,19 +1,18 @@
 import { useState } from "react";
 
 import Button from "../Button/index";
-
-function List({ items }) {
-  const listItems = items.map((item) => <li key={item.toString()}>{item}</li>);
-
-  return <ul>{listItems}</ul>;
-}
+import List from "../List/index";
 
 export default function Form() {
   const [valueInput, setValueInput] = useState("");
-  const items = [valueInput];
+  const [itemValue, setItemValue] = useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setValueInput("");
+    let copyArray = itemValue;
+    copyArray.push(valueInput);
+    setItemValue(copyArray);
   };
 
   return (
@@ -25,8 +24,10 @@ export default function Form() {
         </form>
       </div>
       <div>
-        <List items={items} />
+        <List items={itemValue} />
       </div>
     </>
   );
 }
+
+// adicionar o valor do input no array
